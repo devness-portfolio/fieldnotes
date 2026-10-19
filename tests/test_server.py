@@ -3,7 +3,7 @@ from pathlib import Path
 import server
 class BackendTests(unittest.TestCase):
     def test_repo_identity(self):
-        self.assertEqual(server.repo_key('git@github.com:devness/example.git'),server.repo_key('https://github.com/devness/example'))
+        self.assertEqual(server.repo_key('git@github.com:devness-portfolio/example.git'),server.repo_key('https://github.com/devness-portfolio/example'))
     def test_persistence(self):
         old=server.DATA
         with tempfile.TemporaryDirectory() as d:

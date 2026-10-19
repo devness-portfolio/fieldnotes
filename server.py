@@ -31,7 +31,7 @@ def discover():
     warning=''
     try:
         for page in range(1,11):
-            req=urllib.request.Request(f'https://api.github.com/users/devness/repos?per_page=100&page={page}',headers={'User-Agent':'Devness-Project-Dashboard'})
+            req=urllib.request.Request(f'https://api.github.com/users/devness-portfolio/repos?per_page=100&page={page}',headers={'User-Agent':'Devness-Project-Dashboard'})
             repos=json.load(urllib.request.urlopen(req,timeout=20))
             for r in repos:
                 key=repo_key(r['html_url'])

@@ -1,5 +1,7 @@
 # Fieldnotes — personal project dashboard
 
+Source: [devness-portfolio/fieldnotes](https://github.com/devness-portfolio/fieldnotes).
+
 A local Mac dashboard for discovering projects and resuming work with Codex. No dependencies or cloud storage are required.
 
 ## Run
@@ -11,7 +13,7 @@ python3 server.py
 
 Open http://127.0.0.1:8765. The server listens only on your Mac. Stop it with Ctrl-C. Projects and release checklists are saved in `data/projects.json`; back up this folder to preserve them.
 
-Choose **Discover projects** to scan project folders under your home directory and public repos belonging to `devness`. Review recommendations before adding. Recent activity means a commit within 90 days; unfinished work means uncommitted changes. Discovery skips hidden/system/dependency folders and symlinks, and limits traversal depth. Some folders may be inaccessible under macOS privacy permissions. GitHub API network/rate-limit failures are shown alongside local results. Private GitHub repos and automatic discovery of nontechnical projects are not yet supported. Add those manually.
+Choose **Discover projects** to scan project folders under your home directory and public repos belonging to `devness-portfolio`. Review recommendations before adding. Recent activity means a commit within 90 days; unfinished work means uncommitted changes. Discovery skips hidden/system/dependency folders and symlinks, and limits traversal depth. Some folders may be inaccessible under macOS privacy permissions. GitHub API network/rate-limit failures are shown alongside local results. Private GitHub repos and automatic discovery of nontechnical projects are not yet supported. Add those manually.
 
 Each project has a category, description, optional local folder and repository, release checklist, and optional date. Each checklist item contributes equally to the displayed percentage. Local project details show up to three commits, uncommitted paths, and `.project-dashboard/handoff.md` when present. Repo-only entries currently require a local checkout for live commit context.
 
