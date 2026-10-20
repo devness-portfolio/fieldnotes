@@ -29,6 +29,12 @@ Open a project title to manage its release tasks. Tasks have their own stage boa
 
 Existing projects without a stage appear in Backlog. Previously checked checklist items count as Completed for now; unchecked items appear in Backlog. Stages save in the existing local data file when changed.
 
+## Deadlines
+
+Active work includes a compact upcoming-deadlines preview. Open **Deadlines** for a combined agenda of project target dates and task deadlines. **This week** runs through Sunday; **Two weeks** runs through the following Sunday; **This month** runs through the last day of the current month. Exact range dates are shown. Overdue items stay visible in every range, and completed items are excluded. On hold and backlog work with dates remain visible. Category and search filters apply; task titles are searchable in the agenda. Undated items do not appear.
+
+Set project dates under **Edit project**. Set an optional task deadline when adding an item or by clicking its title to edit it. Select an agenda task to edit it, or a project to open its details. Dates use your browser’s local calendar.
+
 ## Enable Codex continuity in another project
 
 This checkout already contains resume instructions and the wrap-up skill. For another approved project:
@@ -59,4 +65,5 @@ The skill uses session context available to Codex; the dashboard cannot itself a
 python3 -m unittest discover -s tests
 node --check web/app.js
 node tests/test_pipeline.cjs
+node tests/test_deadlines.cjs
 ```
