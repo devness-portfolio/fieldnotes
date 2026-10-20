@@ -17,6 +17,16 @@ Choose **Discover projects** to scan project folders under your home directory a
 
 Each project has a category, description, optional local folder and repository, release checklist, and optional date. Each checklist item contributes equally to the displayed percentage. Local project details show up to three commits, uncommitted paths, and `.project-dashboard/handoff.md` when present. Repo-only entries currently require a local checkout for live commit context.
 
+## Project pipeline
+
+Fieldnotes Focus opens on **Active work** (Ready to start and In development). **All stages** includes Backlog, Ready to start, In development, Completed for now, and On hold. **Up next** shows Ready to start projects; **Start working** moves one to In development.
+
+Switch between Board and Grid. In Board, drag a project card by its body or drag grip into a stage column; highlighted columns show drop targets. Grid includes a stage filter. Every card also has a stage dropdown for keyboard and touch use. Category and search filters apply across views.
+
+Open a project title to manage its release tasks. Tasks have their own stage board and dropdowns. A project marked Completed for now automatically returns to In development if any task is unfinished, including when adding or reopening a task. This rule also applies to existing projects when the dashboard loads. Other project stages remain manual. Completed for now tasks count toward release progress. When every task is complete, a button offers to mark the project completed for now; this never happens automatically. Move projects or tasks back to any stage when revisiting them.
+
+Existing projects without a stage appear in Backlog. Previously checked checklist items count as Completed for now; unchecked items appear in Backlog. Stages save in the existing local data file when changed.
+
 ## Enable Codex continuity in another project
 
 This checkout already contains resume instructions and the wrap-up skill. For another approved project:
@@ -46,4 +56,5 @@ The skill uses session context available to Codex; the dashboard cannot itself a
 ```sh
 python3 -m unittest discover -s tests
 node --check web/app.js
+node tests/test_pipeline.cjs
 ```
