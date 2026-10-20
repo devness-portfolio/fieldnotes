@@ -11,6 +11,7 @@ function modal(html){$('#modal').innerHTML='<button class="close" aria-label="Cl
 function progress(p){const tasks=p.tasks||[],done=tasks.filter(t=>taskStage(t)==='Completed for now').length;return{done,total:tasks.length,percent:tasks.length?Math.round(done/tasks.length*100):0}}
 async function persist(){reopenUnfinishedProjects();await api('projects',projects);render()}
 function render(){
+  $('#all').textContent=`▦ \u00a0 All projects (${projects.length})`;
   $('#stats').innerHTML=`<span><strong>${projects.filter(p=>projectStage(p)==='In development').length}</strong> in development</span><span><strong>${projects.filter(p=>projectStage(p)==='Ready to start').length}</strong> ready to start</span><span class="muted">Completed projects stay ready to revisit.</span>`;
   $('#categories').innerHTML=['personal','client','work','business'].map(c=>`<button class="nav ${filter===c?'active':''}" data-category="${c}">${c[0].toUpperCase()+c.slice(1)} (${projects.filter(p=>p.category===c).length})</button>`).join('');
   document.querySelectorAll('[data-category]').forEach(b=>{b.setAttribute('aria-pressed',String(filter===b.dataset.category))});document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{filter=b.dataset.category;render()});$('#all').classList.toggle('active',!filter);
