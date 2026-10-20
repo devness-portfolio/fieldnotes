@@ -17,6 +17,8 @@ Choose **Discover projects** to scan project folders under your home directory a
 
 Each project has a category, description, optional local folder and repository, release checklist, and optional date. Each checklist item contributes equally to the displayed percentage. Local project details show up to three commits, uncommitted paths, and `.project-dashboard/handoff.md` when present. Repo-only entries currently require a local checkout for live commit context.
 
+The Midnight Electric palette includes light and dark modes. Use the appearance button in the header to switch; your choice is remembered in this browser. On first visit, it follows your system appearance.
+
 ## Project pipeline
 
 Fieldnotes Focus opens on **Active work** (Ready to start and In development). **All stages** includes Backlog, Ready to start, In development, Completed for now, and On hold. **Up next** shows Ready to start projects; **Start working** moves one to In development.
