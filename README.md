@@ -67,3 +67,9 @@ node --check web/app.js
 node tests/test_pipeline.cjs
 node tests/test_deadlines.cjs
 ```
+
+## GitHub issues
+
+Open a project to see its open GitHub issues, most recently updated first, with labels and links. Refresh reloads the list. Pull requests are excluded. The view reads up to 100 GitHub entries; a notice links to the full list when that limit is reached. Issues remain separate from your local release checklist.
+
+Public repositories work without signing in. For private repositories or higher API limits, start the server with `GITHUB_TOKEN` set to a token with read access to the repository’s issues. The token stays on the server and is never sent to the browser or saved in project data. Network and access errors appear in the Issues section.

@@ -1,4 +1,4 @@
-import json, os, subprocess, urllib.request, urllib.error, threading, time
+import json, os, re, subprocess, urllib.request, urllib.error, threading, time
 from pathlib import Path
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 ROOT=Path(__file__).resolve().parent
@@ -14,6 +14,24 @@ def save(items):
     DATA.parent.mkdir(exist_ok=True); tmp=DATA.with_suffix('.tmp'); tmp.write_text(json.dumps(items,indent=2)); tmp.replace(DATA)
 def repo_key(url):
     return url.lower().replace('git@github.com:','https://github.com/').removesuffix('.git').rstrip('/')
+def issues(p):
+    repo=repo_key(p.get('repo') or '')
+    if not re.fullmatch(r'https://github\.com/[a-z0-9_.-]+/[a-z0-9_.-]+',repo):
+        return {'issues':[], 'warning':'Add a valid GitHub repository in Edit details to view issues.'}
+    headers={'User-Agent':'Fieldnotes','Accept':'application/vnd.github+json'}
+    token=os.environ.get('GITHUB_TOKEN')
+    if token: headers['Authorization']='Bearer '+token
+    result={'issues':[], 'url':repo+'/issues', 'limited':False}
+    try:
+        req=urllib.request.Request(repo.replace('https://github.com/','https://api.github.com/repos/')+'/issues?state=open&sort=updated&direction=desc&per_page=100',headers=headers)
+        with urllib.request.urlopen(req,timeout=15) as response: rows=json.load(response)
+        result['limited']=len(rows)==100
+        result['issues']=[{'number':r['number'],'title':r['title'],'url':repo+'/issues/'+str(r['number']),'labels':[l['name'] for l in r.get('labels',[])]} for r in rows if 'pull_request' not in r]
+    except urllib.error.HTTPError as e:
+        result['warning']={404:'Repository unavailable. Check its URL; private repositories require GITHUB_TOKEN access.',401:'GitHub authentication failed. Check the server’s GITHUB_TOKEN.',403:'GitHub denied this request or its API rate limit was reached. Try again later.',429:'GitHub’s API rate limit was reached. Try again later.'}.get(e.code,'GitHub issues are unavailable. Try again later.')
+    except (urllib.error.URLError,TimeoutError,OSError,ValueError):
+        result['warning']='Could not reach GitHub. Check your connection and retry.'
+    return result
 def discover():
     candidates={}
     for base,dirs,files in os.walk(Path.home()):
@@ -58,6 +76,9 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             if self.path=='/api/projects': return self.respond(read())
             if self.path=='/api/discover': return self.respond(discover())
+            if self.path.startswith('/api/issues/'):
+                p=next((p for p in read() if p['id']==self.path.rsplit('/',1)[1]),None)
+                return self.respond(issues(p)) if p else self.respond({'error':'Project not found'},404)
             if self.path.startswith('/api/context/'):
                 p=next(p for p in read() if p['id']==self.path.rsplit('/',1)[1]); return self.respond(context(p))
             return super().do_GET()
