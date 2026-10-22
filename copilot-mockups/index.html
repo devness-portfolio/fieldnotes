@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>Fieldnotes — Dashboard mockups</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Fieldnotes home"><span class="brand-mark">f</span> fieldnotes</a>
+      <p class="side-label">YOUR WORKSPACE</p>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item selected" data-page="focus"><span class="nav-icon">◉</span> Focus <span class="nav-count" id="nav-attention">2</span></button>
+        <button class="nav-item" data-page="projects"><span class="nav-icon">▦</span> All projects <span class="nav-count" id="nav-projects">4</span></button>
+        <button class="nav-item" data-page="archive"><span class="nav-icon">⌑</span> Archive</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-mark"><span></span> Private to this device</div>
+        <p>Small steps, steady progress.</p>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="breadcrumb">WORKSPACE <span>/</span> <span id="crumb-page">FOCUS</span></div>
+        <div class="top-actions">
+          <span class="local-badge"><span></span> Saved on this device</span>
+          <button class="avatar" aria-label="Your profile">D</button>
+        </div>
+      </header>
+
+      <div class="mockup-switcher" aria-label="Preview mockup screens">
+        <span>PREVIEW</span>
+        <button class="screen-tab active" data-screen="focus">Dashboard</button>
+        <button class="screen-tab" data-screen="detail">Project detail</button>
+        <button class="screen-tab" data-screen="clear">All clear</button>
+      </div>
+
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow" id="date-label">MONDAY, OCTOBER 19</p>
+          <h1 id="page-title">Your work, in focus.</h1>
+          <p class="page-subtitle" id="page-subtitle">A short list of projects that could use your attention.</p>
+        </div>
+        <button class="button button-primary" id="add-project"><span>＋</span> New project</button>
+      </section>
+
+      <section class="focus-summary" id="focus-summary" aria-label="Attention summary">
+        <div class="summary-icon">↗</div>
+        <div class="summary-copy">
+          <strong><span id="attention-total">2</span> projects need a next step</strong>
+          <span>Give each one a small action, then get back to what matters.</span>
+        </div>
+        <span class="summary-note"><span class="pulse"></span> FOCUS FOR TODAY</span>
+      </section>
+
+      <section class="content-section" id="attention-section">
+        <div class="section-heading">
+          <div>
+            <h2>Needs your attention <span class="count-pill" id="attention-count">2</span></h2>
+            <p>Missing or overdue next actions, all in one place.</p>
+          </div>
+          <button class="text-button" id="show-all">See all projects <span>→</span></button>
+        </div>
+        <div class="project-list" id="attention-list"></div>
+      </section>
+
+      <section class="content-section steady-section" id="steady-section">
+        <div class="section-heading">
+          <div>
+            <h2>Moving along <span class="count-pill quiet" id="moving-count">2</span></h2>
+            <p>These projects already have a clear next step.</p>
+          </div>
+        </div>
+        <div class="project-list compact-list" id="moving-list"></div>
+      </section>
+
+      <section class="content-section all-projects-section" id="projects-section" hidden>
+        <div class="section-heading">
+          <div>
+            <h2>All active projects <span class="count-pill quiet" id="all-count">4</span></h2>
+            <p>One current action per project. That's enough to keep moving.</p>
+          </div>
+          <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Find a project" aria-label="Find a project"></label>
+        </div>
+        <div class="project-list" id="all-list"></div>
+      </section>
+
+      <section class="content-section all-projects-section" id="archive-section" hidden>
+        <div class="section-heading">
+          <div>
+            <h2>Archived projects <span class="count-pill quiet" id="archive-count">1</span></h2>
+            <p>Finished for now, but easy to pick back up.</p>
+          </div>
+        </div>
+        <div class="project-list" id="archive-list"></div>
+      </section>
+
+      <section class="all-clear" id="clear-state" hidden>
+        <div class="clear-art"><span>✓</span></div>
+        <p class="eyebrow">LOOKING GOOD</p>
+        <h2>Nothing needs your attention.</h2>
+        <p>Your active projects all have a next step. Enjoy the clear space, or browse everything you're working on.</p>
+        <button class="button button-primary" id="clear-see-all">Browse all projects <span>→</span></button>
+      </section>
+
+      <footer class="footer-note"><span class="footer-dot"></span> A calm place to pick up where you left off <span class="footer-separator">·</span> Mockup only — nothing is saved</footer>
+    </main>
+  </div>
+
+  <dialog id="project-dialog" aria-labelledby="dialog-title">
+    <form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div id="dialog-content"></div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
