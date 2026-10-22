@@ -11,7 +11,7 @@ cd /Users/devness/project-dashboard
 python3 server.py
 ```
 
-Open http://127.0.0.1:8765. The server listens only on your Mac. Stop it with Ctrl-C. Projects and release checklists are saved in `data/projects.json`; back up this folder to preserve them.
+Open http://127.0.0.1:18765. The server listens only on your Mac. Stop it with Ctrl-C. Projects and release checklists are saved in `data/projects.json`; back up this folder to preserve them.
 
 Choose **Discover projects** to scan project folders under your home directory and public repos belonging to `devness-portfolio`. Review recommendations before adding. Recent activity means a commit within 90 days; unfinished work means uncommitted changes. Discovery skips hidden/system/dependency folders and symlinks, and limits traversal depth. Some folders may be inaccessible under macOS privacy permissions. GitHub API network/rate-limit failures are shown alongside local results. Private GitHub repos and automatic discovery of nontechnical projects are not yet supported. Add those manually.
 

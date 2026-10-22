@@ -96,5 +96,6 @@ class Handler(SimpleHTTPRequestHandler):
             self.respond({'error':'Unknown endpoint'},404)
         except Exception as e: self.respond({'error':str(e)},400)
 if __name__=='__main__':
-    print('Project dashboard: http://127.0.0.1:8765',flush=True)
-    ThreadingHTTPServer(('127.0.0.1',8765),Handler).serve_forever()
+    server=ThreadingHTTPServer(('127.0.0.1',18765),Handler)
+    print('Project dashboard: http://127.0.0.1:18765',flush=True)
+    server.serve_forever()
